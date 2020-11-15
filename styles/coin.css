@@ -1,0 +1,48 @@
+body {
+  background: #87cefa;
+  font-family: "Playfair Display", serif;
+  margin: auto;
+}
+
+.post {
+  width: 100%;
+  max-width: 780px;
+  margin-left: 180px;
+  align-items: center;
+  background: #fff;
+  padding: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: 5px solid #4682b4;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  text-align: justify;
+}
+
+.post_image {
+  display: flex;
+  margin-bottom: 15px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.breadcrumb li {
+  font-size: 24px;
+  text-align: center;
+  margin-left: 40px;
+}
+
+.d-flex .p-3 .bd-highlight {
+  display: flex;
+  float: left;
+  margin-left: 40px;
+}
+
+.media {
+  margin-left: 40px;
+}
+
+.post_content {
+  margin: auto;
+  font-size: 18px;
+}

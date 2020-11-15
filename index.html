@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CoinMarketCap</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="./images/money.ico">
+    <link rel="stylesheet" href="./styles/coin.css">
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+    <header>
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item-active" aria-current="page">Coin Market Cap</li>
+            </ol>
+        </nav>
+    </header>
+
+
+    <div class="d-flex p-3 bd-highlight">
+        <div id='coins'></div>
+
+        <div class="teste">
+            <article class="post">
+                <header>
+                    <h3 class="post_title">História</h3>
+                    <img src="./images/bitcoin.jpg" alt="cripto_moedas" class="post_image">
+                </header>
+                <p class="post_content"><br> Em 1998, Wei Dai publicou a descrição do "Dinheiro B", um sistema eletrônico e anônimo de pagamento. Pouco depois, Nick Szabo criou o "Bit Gold".
+
+                    Assim como o Bitcoin e outras criptomoedas que o seguiram, Bit Gold era um sistema de moeda eletrônico que exigia seus usuários completarem uma função de prova de trabalho, com as soluções sendo criptograficamente computadas e publicadas.
+
+                    A primeira criptomoeda descentralizada, o Bitcoin, foi criado em 2009 por Satoshi Nakamoto, pseudônimo utilizado pela pessoa que criou a moeda virtual.
+
+                    Em abril de 2011, o Namecoin foi criada como uma tentativa de formar um DNS descentralizado, o que tornaria a censura na internet algo muito difícil. Em outubro de 2011, Litecoin foi lançada.
+
+                    Outra criptomoeda, Peercoin, foi a primeira a usar um híbrido de prova de trabalho e prova de participação.
+
+                    A partir de 2014, uma nova geração de criptomoedas surgiu, como a Ethereum e Nxt. Essas criptomoedas possuem funcionalidades avançadas como endereços escondidos e contratos inteligentes.</p>
+            </article>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/74b1306763.js" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        //My api key
+        var apikey = {
+            key: 'cb3a8d42-b8ed-45cb-a896-00dd9b51cce8'
+        }
+
+        //GET Fetch Requisition
+        fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/map?CMC_PRO_API_KEY=' +
+            apikey.key)
+            .then((response) => {
+                if (!response.ok) throw new Error('Erro ao executar a requisição, status ' + response.status);
+                return response.json();
+            })
+            .then((api) => {
+
+                var texto = "";
+                // Get 10 coins and symbols 
+                for (let i = 0; i < 10; i++) {
+
+                    console.log(api);
+
+                    //Show API information
+
+                    texto = texto + `
+                  
+                    <div class="media">
+                        <img src="./images/coin.jpg" class="align-self-center mr-3" alt="coin" width="100" height="60">
+                        <div class="media-body">
+                        <h5 class="mt-2">${api.data[i].name}</h5>
+                        
+                        <p><i class="fas fa-coins"></i> ${api.data[i].symbol} <br> ${api.data[i].first_historical_data}</p>
+                        </div>
+                    </div>
+               
+                    `;
+
+                    document.getElementById("coins").innerHTML = texto;
+
+                }
+            })
+            .catch((error) => {
+                console.error(error.message);
+            });
+    </script>
+
+
+</body>
+
+</html>
